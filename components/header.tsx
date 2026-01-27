@@ -17,7 +17,7 @@ export function Header() {
         <div>
           <Link href="/" className="flex flex-col justify-center select-none">
             <span className="text-xl font-bold uppercase">Dr. Wakil Ahmed</span>
-            <span className="text-[calc(var(--text-xs)-2px)] uppercase leading-none tracking-[0.18em]">
+            <span className="text-[calc(var(--text-xs)-2px)] uppercase leading-none tracking-[0.14em]">
               Best Hip and Knee Surgeon
             </span>
           </Link>
