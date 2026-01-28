@@ -11,7 +11,7 @@ export function NavLink({
       <Link
         className={cn(
           buttonVariants({ size: "sm", variant: "ghost" }),
-          "px-2 py-1 h-auto text-foreground/80",
+          "px-2 py-1 h-auto text-inherit",
           className,
         )}
         {...props}
