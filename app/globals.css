@@ -133,6 +133,26 @@
   }
 }
 
+@utility spacer-top-* {
+  margin-top: --spacing(--value(integer));
+  @variant md {
+    margin-top: --spacing(--value(integer) * 1.2);
+  }
+  @variant lg {
+    margin-top: --spacing(--value(integer) * 1.6);
+  }
+}
+
+@utility spacer-bottom-* {
+  margin-bottom: --spacing(--value(integer));
+  @variant md {
+    margin-bottom: --spacing(--value(integer) * 1.2);
+  }
+  @variant lg {
+    margin-bottom: --spacing(--value(integer) * 1.6);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
