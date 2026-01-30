@@ -38,6 +38,7 @@ export function Hero() {
       <div className="absolute inset-0 -z-1 -mt-(--header-height) aspect-9/10 md:aspect-auto max-md:after:absolute max-md:after:w-full max-md:after:h-24 after:bottom-0 after:bg-linear-to-b after:from-transparent after:to-primary after:to-90%">
         <Image
           src={heroImg}
+          placeholder="blur"
           alt="Hero background image"
           className="object-top md:max-lg:object-top-right object-cover w-full h-full"
         />

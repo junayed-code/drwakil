@@ -9,6 +9,7 @@ export function About() {
       <div className="container flex flex-col lg:grid lg:grid-cols-12 gap-6">
         <picture className="col-span-5 2xl:col-span-4">
           <Image
+            placeholder="blur"
             src={DrWakilAhmedImg}
             className="rounded-xl object-[center_20%] object-cover aspect-7/5 lg:aspect-5/7 xl:aspect-auto lg:object-center"
             alt="Dr. Wakil Ahmed"
