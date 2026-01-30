@@ -11,7 +11,7 @@ export function Hero() {
       id="hero"
       className="relative aspect-5/7 sm:aspect-4/5 flex flex-col justify-end md:aspect-auto bg-primary -z-2"
     >
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 md:py-32 flex items-end md:items-center">
+      <div className="container md:py-32 flex items-end md:items-center">
         <div className="mb-[18%] md:mb-0 text-center mx-auto max-w-lg md:mx-0 md:text-left text-primary-foreground">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold">
             Restoring Movement, Rebuilding Lives

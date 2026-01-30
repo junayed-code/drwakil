@@ -26,7 +26,7 @@ export function Header() {
         <div className="backdrop-blur-xl absolute inset-0" />
 
         <nav aria-label="Main">
-          <div className="container mx-auto px-6 lg:px-8 flex items-center h-(--header-height) backdrop-opacity-100 text-primary-foreground">
+          <div className="container flex items-center h-(--header-height) backdrop-opacity-100 text-primary-foreground">
             <div className="flex-1">
               <Link
                 href="/"
@@ -82,9 +82,9 @@ export function Header() {
           {/* Mobile nav */}
           {isMobileMenuOpen && (
             <div className="lg:hidden absolute w-full z-40 top-(--header-height) backdrop-blur-xl bg-card/55">
-              <div className="container mx-auto flex flex-col py-5 gap-2">
+              <div className="container flex flex-col py-5 gap-2">
                 {/* Mobile nav links */}
-                <ul className="flex flex-col gap-1 px-3">
+                <ul className="flex flex-col gap-1">
                   {NAV_LINKS.map((link) => (
                     <NavLink
                       variant="mobile"
@@ -98,7 +98,7 @@ export function Header() {
                 </ul>
 
                 {/* Mobile nav cta */}
-                <div className="px-6">
+                <div>
                   <div className="w-full border-t border-muted-foreground/50 mt-2 mb-5" />
                   <Button asChild size="sm" className="w-full">
                     <Link href="tel:+8809610009630">
