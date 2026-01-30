@@ -4,9 +4,9 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import { Card } from '@components/ui/card';
+import { Stethoscope, Zap } from 'lucide-react';
 import hipImage from '@/assets/hip-replacement.jpg';
 import kneeImage from '@/assets/knee-replacement.jpg';
-import { Stethoscope, Zap } from 'lucide-react';
 
 export function Expertise() {
   const sectionRef = useRef(null);
