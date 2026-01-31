@@ -1,19 +1,46 @@
+'use client';
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   Card,
   CardContent,
   CardDescription,
   CardTitle,
 } from "@components/ui/card";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import hipImage from "@/assets/hip-replacement.jpg";
 import kneeImage from "@/assets/knee-replacement.jpg";
 
 export function Expertise() {
+  const { ref, isInView } = useScrollAnimation({ threshold: 0.1 });
+
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.8, ease: "easeOut" },
+    }),
+  };
+
   return (
-    <section id="expertise" className="spacer-top-20">
-      <div className="container">
+    <section id="expertise" className="spacer-top-20" ref={ref}>
+      <motion.div
+        className="container"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         {/* Header */}
-        <div className="mb-12 md:mb-16 text-center sm:text-left max-w-xl">
+        <motion.div
+          className="mb-12 md:mb-16 text-center sm:text-left max-w-xl"
+          variants={headerVariants}
+        >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-primary mb-4">
             Areas of Specialization
           </h2>
@@ -22,12 +49,13 @@ export function Expertise() {
             focus on joint replacement and arthroscopic surgery, utilizing the
             latest surgical techniques and evidence-based practices.
           </p>
-        </div>
+        </motion.div>
 
         {/* Expertise Grid */}
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
           {/* Knee Replacement Card */}
-          <Card className="overflow-hidden py-0 gap-0">
+          <motion.div custom={0} variants={cardVariants}>
+            <Card className="overflow-hidden py-0 gap-0">
             {/* Image Container */}
             <picture className="relative">
               <Image
@@ -51,10 +79,12 @@ export function Expertise() {
                 that prioritize patient outcomes and long-term joint function.
               </CardDescription>
             </CardContent>
-          </Card>
+            </Card>
+          </motion.div>
 
           {/* Hip Replacement Card */}
-          <Card className="overflow-hidden py-0 lg:flex-col-reverse gap-0">
+          <motion.div custom={1} variants={cardVariants}>
+            <Card className="overflow-hidden py-0 lg:flex-col-reverse gap-0">
             {/* Image Container */}
             <picture className="relative">
               <Image
@@ -79,9 +109,10 @@ export function Expertise() {
                 eliminate pain.
               </CardDescription>
             </CardContent>
-          </Card>
+            </Card>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
