@@ -1,13 +1,18 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import React from "react";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
   className?: string;
-  animationType?: 'fadeInUp' | 'fadeInLeft' | 'fadeInRight' | 'fadeInScale' | 'staggerChildren';
+  animationType?:
+    | "fadeInUp"
+    | "fadeInLeft"
+    | "fadeInRight"
+    | "fadeInScale"
+    | "staggerChildren";
   delay?: number;
   duration?: number;
   staggerChildren?: number;
@@ -51,34 +56,37 @@ const childVariants = {
 
 export function AnimatedSection({
   children,
-  className = '',
-  animationType = 'fadeInUp',
+  className = "",
+  animationType = "fadeInUp",
   delay = 0,
   duration = 0.8,
   staggerChildren = 0.15,
 }: AnimatedSectionProps) {
-  const { ref, isInView } = useScrollAnimation({ threshold: 0.1, once: true });
+  const { ref, isInView } = useScrollAnimation<HTMLDivElement>({
+    threshold: 0.1,
+    once: true,
+  });
 
   const variants = animationVariants[animationType];
-  const isStagger = animationType === 'staggerChildren';
+  const isStagger = animationType === "staggerChildren";
 
   return (
     <motion.div
       ref={ref}
       className={className}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      animate={isInView ? "visible" : "hidden"}
       variants={isStagger ? variants : variants}
       transition={{
         delay,
         duration: isStagger ? 0 : duration,
-        ease: 'easeOut',
+        ease: "easeOut",
       }}
     >
       {isStagger ? (
         <motion.div variants={{ visible: { transition: { staggerChildren } } }}>
-          {React.Children.map(children, (child) => (
-            <motion.div key={Math.random()} variants={childVariants}>
+          {React.Children.map(children, (child, i) => (
+            <motion.div key={i} variants={childVariants}>
               {child}
             </motion.div>
           ))}

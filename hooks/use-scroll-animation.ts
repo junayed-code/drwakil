@@ -5,9 +5,11 @@ interface UseScrollAnimationOptions {
   once?: boolean;
 }
 
-export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
+export function useScrollAnimation<Element extends HTMLElement>(
+  options: UseScrollAnimationOptions = {},
+) {
   const { threshold = 0.1, once = true } = options;
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<Element>(null);
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
