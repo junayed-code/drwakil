@@ -9,14 +9,14 @@ import {
   CarouselItem,
 } from "@components/ui/carousel";
 
-const YOUTUBE_VIDEO_IDS = ["iCFLzWjQE_o", "7bBZNh_HPk4"];
+const YOUTUBE_VIDEO_IDS = ["iCFLzWjQE_o", "7bBZNh_HPk4", "aqw2Sh_E_ZE"];
 
 export function InterviewsCarousel() {
   return (
     <Carousel
       className="w-full"
       plugins={[ClassNames()]}
-      opts={{ containScroll: false }}
+      opts={{ containScroll: false, startIndex: 1 }}
     >
       <CarouselContent className="md:-ml-6 lg:-ml-8 [touch-action:pan-y_pinch-zoom]">
         {YOUTUBE_VIDEO_IDS.map((id) => (
