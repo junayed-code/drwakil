@@ -18,21 +18,24 @@ const NAV_LINKS = [
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const heroElement = document.getElementById("hero");
-      if (!heroElement) return;
+    const heroElement = document.getElementById("hero");
+    if (!heroElement) return;
 
-      const heroBottom = heroElement.getBoundingClientRect().bottom;
-      const isScrolled = heroBottom < 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0,
+      }
+    );
 
-      setIsScrolledPastHero(isScrolled);
-    };
+    observer.observe(heroElement);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -43,7 +46,7 @@ export function Header() {
 
         <nav aria-label="Main">
           <div className={`container flex items-center h-(--header-height) backdrop-opacity-100 transition-colors duration-300 ${
-            isScrolledPastHero ? "text-primary" : "text-primary-foreground"
+            isHeroVisible ? "text-primary-foreground" : "text-primary"
           }`}>
             <div className="flex-1">
               <Link
@@ -73,9 +76,9 @@ export function Header() {
                 size="sm"
                 variant="outline"
                 className={`bg-transparent border-transparent transition-all duration-300 ${
-                  isScrolledPastHero
-                    ? "shadow-[inset_0_0_2px_rgba(0,0,0,0.3)]"
-                    : "shadow-[inset_0_0_2px_rgba(255,255,255,0.6)]"
+                  isHeroVisible
+                    ? "shadow-[inset_0_0_2px_rgba(255,255,255,0.6)]"
+                    : "shadow-[inset_0_0_2px_rgba(0,0,0,0.3)]"
                 }`}
               >
                 <Link href="tel:+8809610009630">
@@ -91,9 +94,9 @@ export function Header() {
               variant="outline"
               aria-label="Toggle menu"
               className={`lg:hidden bg-transparent border-transparent transition-all duration-300 ${
-                isScrolledPastHero
-                  ? "shadow-[inset_0_0_2px_rgba(0,0,0,0.3)]"
-                  : "shadow-[inset_0_0_2px_rgba(255,255,255,0.6)]"
+                isHeroVisible
+                  ? "shadow-[inset_0_0_2px_rgba(255,255,255,0.6)]"
+                  : "shadow-[inset_0_0_2px_rgba(0,0,0,0.3)]"
               }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
