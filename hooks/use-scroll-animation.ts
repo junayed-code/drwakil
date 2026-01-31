@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
 
 interface UseScrollAnimationOptions {
   threshold?: number;
@@ -22,7 +22,7 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
           setIsInView(false);
         }
       },
-      { threshold }
+      { threshold },
     );
 
     if (ref.current) {

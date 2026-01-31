@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -12,28 +12,43 @@ export function About() {
 
   const imageVariants = {
     hidden: { opacity: 0, x: -40 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   const contentVariants = {
     hidden: { opacity: 0, x: 40 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   return (
-    <section id="about" className="spacer-top-20" ref={ref}>
+    <section id="about" className="spacer-top-20 overflow-x-hidden" ref={ref}>
       <motion.div
         className="container flex flex-col lg:grid lg:grid-cols-12 gap-6"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
       >
-        <motion.picture className="col-span-5 2xl:col-span-4" variants={imageVariants}>
+        <motion.picture
+          className="col-span-5 2xl:col-span-4"
+          variants={imageVariants}
+        >
           <Image
             placeholder="blur"
             src={DrWakilAhmedImg}
@@ -76,7 +91,10 @@ export function About() {
             replacement surgeries.
           </motion.p>
 
-          <motion.div className="mt-3 lg:mt-auto grid grid-cols-2" variants={itemVariants}>
+          <motion.div
+            className="mt-3 lg:mt-auto grid grid-cols-2"
+            variants={itemVariants}
+          >
             <Card className="p-4 sm:p-6 text-center gap-2 shadow-none border-0 rounded-none border-r-2">
               <AnimatedCounter
                 to={20}
