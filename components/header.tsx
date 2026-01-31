@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, Phone, X } from "lucide-react";
 
 import { Button } from "@components/ui/button";
@@ -18,15 +18,36 @@ const NAV_LINKS = [
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+
+  useEffect(() => {
+    const heroElement = document.getElementById("hero");
+    if (!heroElement) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0,
+      }
+    );
+
+    observer.observe(heroElement);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header>
       <div className="h-(--header-height)" />
-      <div className="fixed top-0 inset-x-0 z-50 h-(--header-height)">
+      <div className="fixed top-0 inset-x-0 z-50 h-(--header-height) transition-colors duration-300">
         <div className="backdrop-blur-xl absolute inset-0" />
 
         <nav aria-label="Main">
-          <div className="container flex items-center h-(--header-height) backdrop-opacity-100 text-primary-foreground">
+          <div className={`container flex items-center h-(--header-height) backdrop-opacity-100 transition-colors duration-300 ${
+            isHeroVisible ? "text-primary-foreground" : "text-primary"
+          }`}>
             <div className="flex-1">
               <Link
                 href="/"
@@ -54,7 +75,11 @@ export function Header() {
                 asChild
                 size="sm"
                 variant="outline"
-                className="bg-transparent border-transparent shadow-[inset_0_0_2px_rgba(255,255,255,0.6)]"
+                className={`bg-transparent border-transparent transition-all duration-300 ${
+                  isHeroVisible
+                    ? "shadow-[inset_0_0_2px_rgba(255,255,255,0.6)]"
+                    : "shadow-[inset_0_0_2px_rgba(0,0,0,0.3)]"
+                }`}
               >
                 <Link href="tel:+8809610009630">
                   <Phone className="h-4 w-4" />
@@ -68,7 +93,11 @@ export function Header() {
               size="icon"
               variant="outline"
               aria-label="Toggle menu"
-              className="lg:hidden bg-transparent border-transparent shadow-[inset_0_0_2px_rgba(255,255,255,0.6)]"
+              className={`lg:hidden bg-transparent border-transparent transition-all duration-300 ${
+                isHeroVisible
+                  ? "shadow-[inset_0_0_2px_rgba(255,255,255,0.6)]"
+                  : "shadow-[inset_0_0_2px_rgba(0,0,0,0.3)]"
+              }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
