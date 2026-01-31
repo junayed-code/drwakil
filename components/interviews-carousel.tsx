@@ -1,6 +1,6 @@
 "use client";
 
-import { YouTubeEmbed } from "@next/third-parties/google/youtube";
+import { YouTubeEmbed } from "@next/third-parties/google";
 import ClassNames from "embla-carousel-class-names";
 
 import {
